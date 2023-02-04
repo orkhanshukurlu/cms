@@ -14,9 +14,7 @@ class PortfolioController extends Controller
         try {
             $portfolio = Portfolio::with('category:id,name')->active()->latest('order')->get(['title', 'slug', 'image', 'category_id']);
             return view('frontend.portfolio.index', compact('portfolio'));
-        }
-
-        catch (Exception $e) {
+        } catch (Exception $e) {
             logger()->channel('dev')->error($e->getMessage());
             abort(500);
         }
@@ -27,9 +25,7 @@ class PortfolioController extends Controller
         try {
             $nextPortfolio = nextPortfolio($portfolio->id);
             return view('frontend.portfolio.show', compact('portfolio', 'nextPortfolio'));
-        }
-
-        catch (Exception $e) {
+        } catch (Exception $e) {
             logger()->channel('dev')->error($e->getMessage());
             abort(500);
         }

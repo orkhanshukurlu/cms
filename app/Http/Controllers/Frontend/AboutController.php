@@ -16,9 +16,7 @@ class AboutController extends Controller
             $members = Member::with('position:id,name')->active()->get(['name', 'image', 'position_id']);
             $brands  = Brand::active()->get(['name', 'image']);
             return view('frontend.about.index', compact('members', 'brands'));
-        }
-
-        catch (Exception $e) {
+        } catch (Exception $e) {
             logger()->channel('dev')->error($e->getMessage());
             abort(500);
         }

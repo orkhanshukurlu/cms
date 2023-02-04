@@ -26,9 +26,7 @@ class AuthController extends Controller
             }
 
             return back()->withWarning(__('messages.warning.login'));
-        }
-
-        catch (Exception $e) {
+        } catch (Exception $e) {
             logger()->channel('dev')->error($e->getMessage());
             return back()->withError(__('messages.error.login'));
         }
@@ -39,9 +37,7 @@ class AuthController extends Controller
         try {
             auth()->logout();
             return to_route('backend.login.view')->withSuccess(__('messages.success.logout'));
-        }
-
-        catch (Exception $e) {
+        } catch (Exception $e) {
             logger()->channel('dev')->error($e->getMessage());
             return back()->withError(__('messages.error.logout'));
         }
